@@ -28,6 +28,7 @@ find_resources_from_plan = func(type) {
 validate_private_acl = func() {
     result = {
         "private":          true,
+        "encrypted_by_kms": true,
     }
     s3_buckets = find_resources_from_plan("aws_s3_bucket")
     for s3_buckets as joined_path, resource_map {
