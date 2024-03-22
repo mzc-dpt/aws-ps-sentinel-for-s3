@@ -3,6 +3,7 @@ import "tfplan" as plan
 import "tfconfig/v2" as tfconfig
 import "strings"
 import "tfstate/v2" as tfstate
+import "types"
 
 find_resources_by_type = func(type) {
   resources = filter tfconfig.resources as address, r {
