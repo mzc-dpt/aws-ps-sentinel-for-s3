@@ -17,6 +17,7 @@ find_resources = func(type) {
   	r.type is type and
   	r.mode is "managed"
   }
+}
 
 # Get all S3 buckets resources
 allS3BucketsACL = config.find_resources_by_type("aws_s3_bucket_acl")
