@@ -1,6 +1,6 @@
 # Import Functions used below
 import "tfplan" as plan
-import "tfconfig" as config
+import "tfconfig/v2" as tfconfig
 import "strings"
 
 find_resources_by_type = func(type) {
@@ -20,7 +20,7 @@ find_resources = func(type) {
 }
 
 # Get all S3 buckets resources
-allS3BucketsACL = config.find_resources_by_type("aws_s3_bucket_acl")
+allS3BucketsACL = tfconfig.find_resources_by_type("aws_s3_bucket_acl")
 allS3Buckets = plan.find_resources("aws_s3_bucket")
 
 #Variables to support check of legacy S3 syntax vs new Seperate S3 Resources being used
@@ -56,7 +56,7 @@ for allS3Buckets as address, S3Buckets {
 			bucket = buckets.name
 
 			for allS3BucketsACL as address, ACLS {
-				ACL = ACLS.config.bucket.references[1]
+				ACL = ACLS.tfconfig.bucket.references[1]
 				test = strings.split(ACL, ".")[1]
 				acl_name = ACLS.name
 				print("ACL Name is: " + acl_name)
